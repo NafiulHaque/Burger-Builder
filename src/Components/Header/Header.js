@@ -11,7 +11,7 @@ const Header = () => {
           height: "70px"
         }}
       >
-        <NavbarBrand href="/" className="mr-auto ml-5 Brand">
+        <NavbarBrand href="/" className="mr-auto ml-5 Brand p-3">
           <img src={Logo} alt="Logo" width="80px" height="50px" />
         </NavbarBrand>
 
