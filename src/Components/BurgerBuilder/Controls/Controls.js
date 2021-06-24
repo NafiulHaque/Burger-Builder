@@ -3,8 +3,8 @@ import { Card, CardBody, CardFooter, CardHeader, Button } from "reactstrap";
 
 
 const controls = [
-    { label: 'Salad', type: 'bread-salad' },
-    { label: 'Meat', type: 'bread-meat' }
+    { label: 'Salad', type: 'salad' },
+    { label: 'Meat', type: 'meat' }
 
 ]
 
@@ -46,7 +46,7 @@ const Controls = props => {
                     }
                 </CardBody>
                 <CardFooter>
-                    <h5>Price: BDT</h5>
+                    <h5>Price:<strong>{props.price}</strong> BDT</h5>
                 </CardFooter>
             </Card>
         </div>

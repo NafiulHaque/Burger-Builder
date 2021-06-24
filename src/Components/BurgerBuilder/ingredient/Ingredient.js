@@ -21,7 +21,7 @@ const Ingredient = props => {
                 </div>
             );
             break;
-        case "bread-salad":
+        case "salad":
             ingredient = (
                 <div>
                     {" "}
@@ -30,7 +30,7 @@ const Ingredient = props => {
             );
 
             break;
-        case "bread-meat":
+        case "meat":
             ingredient = (
                 <div>
                     <img src={BreadMeet} alt="BreadMeet" />
