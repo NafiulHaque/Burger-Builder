@@ -1,7 +1,7 @@
-import { Nav, Navbar, NavbarBrand, NavItem, NavLink } from "reactstrap";
+import { Nav, Navbar, NavbarBrand, NavItem } from "reactstrap";
 import "./Header.css";
 import Logo from "../../assets/mp 2.png";
-
+import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <div className="Navigation">
@@ -17,9 +17,14 @@ const Header = () => {
 
         <Nav className="mr-md-5">
           <NavItem>
-            <NavLink href="#" className="NavLink">
-              Someth
+            <NavLink exact to="/" className="NavLink">
+              Burger Builder
             </NavLink>
+
+            <NavLink exact to="/orders" className="NavLink">
+              Oreders
+            </NavLink>
+
           </NavItem>
         </Nav>
       </Navbar>
