@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { fetchOrders } from "../../redux/actionCreators";
-import Order from "./Order";
+import Order from "./Order/Order";
 
 import Spinner from "../Spinner/Spinner";
 

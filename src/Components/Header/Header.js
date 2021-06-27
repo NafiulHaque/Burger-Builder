@@ -25,6 +25,10 @@ const Header = () => {
               Oreders
             </NavLink>
 
+            <NavLink exact to="/login" className="NavLink">
+              LogIn
+            </NavLink>
+
           </NavItem>
         </Nav>
       </Navbar>
