@@ -11,7 +11,16 @@ export const authSuccess = (token, userId) => {
     }
 }
 
+export const authLoading = isLoading => {
+    return {
+        type: actionTypes.AUTH_LOADING,
+        payload: isLoading,
+    }
+}
+
 export const auth = (email, password, mode) => dispatch => {
+
+    dispatch(authLoading(true));
     const authData = {
         email: email,
         password: password,
@@ -27,12 +36,17 @@ export const auth = (email, password, mode) => dispatch => {
     const API_KEY = "AIzaSyBdFgU5kbQDIhwzDa-aRo9uBOk5ZhWJG38";
     axios.post(authUrl + API_KEY, authData)
         .then(response => {
+            dispatch(authLoading(false));
             localStorage.setItem('token', response.data.idToken);
             localStorage.setItem('userId', response.data.localId);
             const expirationTime = new Date(new Date().getTime() + response.data.expiresIn * 1000);
             localStorage.setItem('expirationTime', expirationTime);
 
             dispatch(authSuccess(response.data.idToken, response.data.localId))
+        })
+        .catch(err => {
+            dispatch(authLoading(false));
+            console.log(err);
         })
 }
 
