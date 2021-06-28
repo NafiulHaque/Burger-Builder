@@ -8,39 +8,54 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
 
+import { authCheck } from "../redux/authActionCreator";
+import { Component } from "react";
+
 const mapStateToProps = state => {
   return {
     token: state.token,
 
   }
 }
-const Main = props => {
-  let routes = null;
-  if (props.token === null) {
-    routes = (
-      <Switch>
-        <Route path="/login" exact component={Auth} />
-        <Redirect to="/login" />
-      </Switch>
-    )
-  } else {
-    routes = (
-      <Switch>
-        <Route path="/orders" component={Orders} />
-        <Route path="/checkout" component={Checkout} />
-        <Route path="/" exact component={BurgerBuilder} />
-        <Redirect to="/" />
-      </Switch>
-    )
+
+const mapDispatchToProps = dispatch => {
+  return {
+    authCheck: () => dispatch(authCheck()),
   }
-  return (
-    <div>
-      <Header />
-      <div className="container">
-        {routes}
+}
+class Main extends Component {
+  componentDidMount() {
+    this.props.authCheck();
+  }
+  render() {
+    let routes = null;
+    if (this.props.token === null) {
+      routes = (
+        <Switch>
+          <Route path="/login" exact component={Auth} />
+          <Redirect to="/login" />
+        </Switch>
+      )
+    } else {
+      routes = (
+        <Switch>
+          <Route path="/orders" component={Orders} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/" exact component={BurgerBuilder} />
+          <Redirect to="/" />
+        </Switch>
+      )
+    }
+    return (
+      <div>
+        <Header />
+        <div className="container">
+          {routes}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
 };
 
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
